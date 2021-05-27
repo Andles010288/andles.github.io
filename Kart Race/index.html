@@ -96,9 +96,13 @@
     
 
 
+
+
     <script async src="https://gs.eponesh.com/sdk/game-score.js?projectId=23&publicToken=FdAuZIoppFPV59cuGiJR22fg_Ck6tC7k&callback=onGSInit"></script>
     <script>
         window.onGSInit = function (gameScore) {
+          window.onGSInit = async (gameScore) => {
+    const { player, ads } = gameScore;
             // ready
 // Ждем инициализации SDK
 await gameScore.ready;
@@ -143,7 +147,7 @@ gameScore.ads.on('fullscreen:close', (success) => {});
     function postGames () {
       gameScore.socials.post();
   }
-
+          }
         };
 </script>
 
