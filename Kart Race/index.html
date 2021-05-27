@@ -106,11 +106,11 @@
 </script>
 
 <script>
-window.onGSInit = async (gs) => {
-  const { player, ads } = gs;
+window.onGSInit = async (gameScore) => {
+  const { player, ads } = gameScore;
 
   // Ждем инициализации SDK
-  await gs.ready;
+  await gameScore.ready;
   // Ждем пока игрок синхронизируется с сервером
   await player.ready;
   // Показываем рекламный прелоадер и ждем пока закончится
@@ -131,11 +131,11 @@ window.onGSInit = async (gs) => {
   }
   //Поделиться
   function shareGames () {
-    gs.socials.share();
+    gameScore.socials.share();
   }
     //Опубликовать пост
     function postGames () {
-      gs.socials.post();
+      gameScore.socials.post();
   }
   // Игрок хочет получить x5 награду за просмотр видео
   // getX5Reward(500);
