@@ -100,55 +100,50 @@
 
     <script async src="https://gs.eponesh.com/sdk/game-score.js?projectId=23&publicToken=FdAuZIoppFPV59cuGiJR22fg_Ck6tC7k&callback=onGSInit"></script>
     <script>
-        window.onGSInit = function (gameScore) {
-          window.onGSInit = async (gameScore) => {
-    const { player, ads } = gameScore;
-            // ready
-// Ждем инициализации SDK
-await gameScore.ready;
-// Ждем пока игрок синхронизируется с сервером
-await gameScore.player.ready;
-// Показать preloader, возвращает промис
-gameScore.ads.showPreloader();
+        window.onGSInit = async (gs) => {
+    const { player, ads } = gs;
 
-// Начался показ
-gameScore.ads.on('preloader:start', () => {});
-// Закончился показ
-gameScore.ads.on('preloader:close', (success) => {});
-// Показываем рекламный прелоадер и ждем пока закончится
-await gameScore.ads.showPreloader();
+    // Ждем инициализации SDK
+    await gs.ready;
+    // Ждем пока игрок синхронизируется с сервером
+    await player.ready;
+    // Показываем рекламный прелоадер и ждем пока закончится
+    await ads.showPreloader();
+    // Показываем стики баннер (дальше он сам будет обновляться)
+    ads.showSticky();
 
+    // Можно начинать играть :)
 
-  // Показываем стики баннер (дальше он сам будет обновляться)
-  //ads.showSticky();
+    /**
+    * Ниже даны примеры функций для работы с рекламой
+    */
 
-  // Можно начинать играть :)
-
-  /**
-  * Ниже даны примеры функций для работы с рекламой
-  */
-
-  // Вызвать фулскрин баннер когда уровень закончился
-  // onLevelEnd();
-  function onLevelEnd () {
-// Показать fullscreen, возвращает промис
-gameScore.ads.showFullscreen();
-// Начался показ
-gameScore.ads.on('fullscreen:start', () => {});
-// Закончился показ
-gameScore.ads.on('fullscreen:close', (success) => {});
-  }
-
+    // Вызвать фулскрин баннер когда уровень закончился
+    // onLevelEnd();
+    function onLevelEnd () {
+        ads.showFullscreen();
+    }
   //Поделиться
   function shareGames () {
-    gameScore.socials.share();
+    gs.socials.share();
   }
     //Опубликовать пост
     function postGames () {
-      gameScore.socials.post();
+      gs.socials.post();
   }
-          }
-        };
+    // Игрок хочет получить x5 награду за просмотр видео
+    // getX5Reward(500);
+    async function getX5Reward (basicReward) {
+        const success = await ads.showRewardedVideo();
+        if (success) {
+            // Досмотрел видео до конца
+            player.add('gold', 5 * basicReward);
+        } else {
+            // уже не хочет
+            player.add('gold', basicReward);
+        }
+    }
+};
 </script>
 
   </body>
