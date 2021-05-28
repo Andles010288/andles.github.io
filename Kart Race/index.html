@@ -94,53 +94,32 @@
       document.body.appendChild(script);
     </script>
     
-    <script async src="https://gs.eponesh.com/sdk/game-score.js?projectId=23&publicToken=FdAuZIoppFPV59cuGiJR22fg_Ck6tC7k&callback=onGSInit"></script>
-    <script>
-    window.onGSInit = function (gameScore) {
-    function shareGames () {
-    gameScore.socials.share();
-    }
-    //Опубликовать пост
-    function postGames () {
-    gameScore.socials.post();
-    }
-    }
-    window.onGSInit = async (gs) => {
-    const { player, ads } = gs;
-    // Ждем инициализации SDK
-    await gs.ready;
-    // Ждем пока игрок синхронизируется с сервером
-    await player.ready;
-    // Показываем рекламный прелоадер и ждем пока закончится
-    await ads.showPreloader();
-      
-    // Можно начинать играть :)
-    // Вызвать фулскрин баннер когда уровень закончился
-    // onLevelEnd();
-    function onLevelEnd () {
-        ads.showFullscreen();
-    }
-  //Поделиться
-    function shareGames () {
-    gs.socials.share();
-    }
-    //Опубликовать пост
-    function postGames () {
-      gs.socials.post();
-    }
-    // Игрок хочет получить x5 награду за просмотр видео
-    // getX5Reward(500);
-    async function getX5Reward (basicReward) {
-        const success = await ads.showRewardedVideo();
-        if (success) {
-            // Досмотрел видео до конца
-            player.add('gold', 5 * basicReward);
-        } else {
-            // уже не хочет
-            player.add('gold', basicReward);
-        }
-    }
-};
-    </script>
+<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+
+<script>
+  import bridge from '@vkontakte/vk-bridge';
+
+bridge.send('VKWebAppInit', {});
+
+// чтобы ловить события в консоль:
+bridge.subscribe((e) => {
+  console.log('bridge event', e);
+});
+  
+  // Sends event to client
+  vkBridge.send('VKWebAppInit');
+  
+  // Sending event to client
+      function shareGames () {
+    bridge.send('VKWebAppShare')
+  .then(data => {
+    // Handling received data
+    console.log(data.email);
+  })
+  .catch(error => {
+    // Handling an error
+  });
+      }
+</script>
   </body>
 </html>
