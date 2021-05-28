@@ -94,9 +94,14 @@
       document.body.appendChild(script);
     </script>
     
-<script async src="https://gs.eponesh.com/sdk/game-score.js?projectId=23&publicToken=FdAuZIoppFPV59cuGiJR22fg_Ck6tC7k&callback=onGSInit"></script>
-<script>
+    <script async src="https://gs.eponesh.com/sdk/game-score.js?projectId=23&publicToken=FdAuZIoppFPV59cuGiJR22fg_Ck6tC7k&callback=onGSInit"></script>
+    <script>
     window.onGSInit = function (gameScore){
+    }
+    </script>
+    <script>
+    window.onGSInit = async (gs) => {
+    const { player, ads } = gs;
     // Ждем инициализации SDK
     await gs.ready;
     // Ждем пока игрок синхронизируется с сервером
@@ -105,10 +110,6 @@
     await ads.showPreloader();
       
     // Можно начинать играть :)
-    }
-    window.onGSInit = async (gs) => {
-    const { player, ads } = gs;
-      
     // Вызвать фулскрин баннер когда уровень закончился
     // onLevelEnd();
     function onLevelEnd () {
