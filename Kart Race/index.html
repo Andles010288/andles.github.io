@@ -94,13 +94,13 @@
       document.body.appendChild(script);
     </script>
     
-
-
-
-
-    <script async src="https://gs.eponesh.com/sdk/game-score.js?projectId=23&publicToken=FdAuZIoppFPV59cuGiJR22fg_Ck6tC7k&callback=onGSInit"></script>
-    <script>
-        window.onGSInit = async (gs) => {
+// install code before body close tag
+<script async src="https://gs.eponesh.com/sdk/game-score.js?projectId=23&publicToken=FdAuZIoppFPV59cuGiJR22fg_Ck6tC7k&callback=onGSInit"></script>
+<script>
+    window.onGSInit = function (gameScore) {
+        // ready
+    }
+    window.onGSInit = async (gs) => {
     const { player, ads } = gs;
 
     // Ждем инициализации SDK
