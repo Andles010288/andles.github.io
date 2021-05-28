@@ -97,15 +97,7 @@
 <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
 
 <script>
-  import bridge from '@vkontakte/vk-bridge';
 
-bridge.send('VKWebAppInit', {});
-
-// чтобы ловить события в консоль:
-bridge.subscribe((e) => {
-  console.log('bridge event', e);
-});
-  
   // Sends event to client
   vkBridge.send('VKWebAppInit');
   
