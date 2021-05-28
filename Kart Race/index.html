@@ -97,9 +97,6 @@
 // install code before body close tag
 <script async src="https://gs.eponesh.com/sdk/game-score.js?projectId=23&publicToken=FdAuZIoppFPV59cuGiJR22fg_Ck6tC7k&callback=onGSInit"></script>
 <script>
-    window.onGSInit = function (gs) {
-        // ready
-    }
     window.onGSInit = async (gs) => {
     const { player, ads } = gs;
 
@@ -109,8 +106,6 @@
     await player.ready;
     // Показываем рекламный прелоадер и ждем пока закончится
     await ads.showPreloader();
-    // Показываем стики баннер (дальше он сам будет обновляться)
-    ads.showSticky();
 
     // Можно начинать играть :)
 
