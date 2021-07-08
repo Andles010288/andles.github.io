@@ -94,24 +94,33 @@
       document.body.appendChild(script);
     </script>
     
-<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
-
+<script async src="https://gs.eponesh.com/sdk/game-score.js?projectId=23&publicToken=FdAuZIoppFPV59cuGiJR22fg_Ck6tC7k&callback=onGSInit"></script>
 <script>
-
-  // Sends event to client
-  vkBridge.send('VKWebAppInit');
+  window.onGSInit = async (gameScore) => {
+    // Ждем пока игрок синхронизируется с сервером
+    await gameScore.player.ready;
+    // Показываем рекламный прелоадер и ждем пока закончится
+    await gameScore.ads.showPreloader();
+    };
   
-  // Sending event to client
-      function shareGames () {
-    bridge.send('VKWebAppShare')
-  .then(data => {
-    // Handling received data
-    console.log(data.email);
-  })
-  .catch(error => {
-    // Handling an error
-  });
-      }
+    function onLevelEnd () {
+// Показать fullscreen, возвращает промис
+gameScore.ads.showFullscreen();
+// Начался показ
+gameScore.ads.on('fullscreen:start', () => {});
+// Закончился показ
+gameScore.ads.on('fullscreen:close', (success) => {});
+  }
+  //Поделиться
+  function shareGames () {
+    gameScore.socials.share();
+  }
+    //Опубликовать пост
+    function postGames () {
+      gameScore.socials.post();
+  }
+
+
 </script>
   </body>
 </html>
