@@ -100,7 +100,7 @@
 
         <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script>
-      bridge.send("VKWebAppInit");
+     vkBridge.send('VKWebAppInit');
       function initialize(){      
 bridge.send("VKWebAppShowNativeAds", {ad_format:"preloader"})
 .then(data => console.log(data.result))
