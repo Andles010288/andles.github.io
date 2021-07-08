@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -99,10 +98,13 @@
 
 
 
-    
+        <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script>
+      bridge.send("VKWebAppInit");
       function initialize(){      
-bridge.send("VKWebAppInit");
+bridge.send("VKWebAppShowNativeAds", {ad_format:"preloader"})
+.then(data => console.log(data.result))
+.catch(error => console.log(error));
       }
 
 
