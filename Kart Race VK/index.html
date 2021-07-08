@@ -104,13 +104,15 @@
         window.onGSInit = function (gameScore) {
             // ready
         }
-      }
-
-      window.onGSInit = async (gameScore) => {
+        window.onGSInit = async (gameScore) => {
         // Ждем пока игрок синхронизируется с сервером
         await gameScore.player.ready;
         // Показываем рекламный прелоадер и ждем пока закончится
         await gameScore.ads.showPreloader();
+        };  
+      }
+
+
         
       
         function onLevelEnd () {
@@ -130,7 +132,7 @@
           gameScore.socials.post();
       }
     
-      };
+      
     </script>
 
   </body>
