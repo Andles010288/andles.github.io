@@ -101,35 +101,24 @@
     <script async src="https://gs.eponesh.com/sdk/game-score.js?projectId=23&publicToken=FdAuZIoppFPV59cuGiJR22fg_Ck6tC7k&callback=onGSInit"></script>
     <script>
       function initialize(){      
-        window.onGSInit = function (gameScore) {
-            // ready
-        }
-        window.onGSInit = async (gameScore) => {
-        // Ждем пока игрок синхронизируется с сервером
-        await gameScore.player.ready;
-        // Показываем рекламный прелоадер и ждем пока закончится
-        await gameScore.ads.showPreloader();
-        };  
+bridge.send("VKWebAppInit");
       }
 
 
         
       
         function onLevelEnd () {
-    // Показать fullscreen, возвращает промис
-    gameScore.ads.showFullscreen();
-    // Начался показ
-    gameScore.ads.on('fullscreen:start', () => {});
-    // Закончился показ
-    gameScore.ads.on('fullscreen:close', (success) => {});
+bridge.send("VKWebAppShowNativeAds", {ad_format:"interstitial"})
+.then(data => console.log(data.result))
+.catch(error => console.log(error));
       }
       //Поделиться
       function shareGames () {
-        gameScore.socials.share();
+bridge.send("VKWebAppShare", {"link": "https://vk.com/app6909581#hello"});
       }
         //Опубликовать пост
         function postGames () {
-          gameScore.socials.post();
+bridge.send("VKWebAppShowWallPostBox", {"message": "Hello!"});
       }
     
       
