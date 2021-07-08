@@ -98,13 +98,13 @@
 <script>
       window.onGSInit = function (gameScore) {
         // ready
-    }
+    };
   window.onGSInit = async (gameScore) => {
     // Ждем пока игрок синхронизируется с сервером
     await gameScore.player.ready;
     // Показываем рекламный прелоадер и ждем пока закончится
     await gameScore.ads.showPreloader();
-    };
+    
   
     function onLevelEnd () {
 // Показать fullscreen, возвращает промис
@@ -123,7 +123,7 @@ gameScore.ads.on('fullscreen:close', (success) => {});
       gameScore.socials.post();
   }
 
-
+  };
 </script>
   </body>
 </html>
