@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Mini Pixel: Funny Animals</title>
+    <title>Pixel Jump 2: Funny Animals</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -32,7 +32,7 @@
         codeUrl: buildUrl + "/Mini Pixel Funny Animals VK.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Andles Games",
-        productName: "Mini Pixel: Funny Animals",
+        productName: "Pixel Jump 2: Funny Animals",
         productVersion: "1",
       };
 
@@ -118,9 +118,9 @@
       //Опубликовать пост
       //Все выше и выше!
       //Я победил в гонке!
-      function postGames () {
+      function postGames (score) {
         vkBridge.send("VKWebAppShowWallPostBox", {
-        "message": "Все выше и выше!",
+          "message": "Я набрал " + score + " очков, в игре",
         "attachments": "https://vk.com/app7900001"
       });
       }
