@@ -118,9 +118,9 @@
       //Опубликовать пост
       //Все выше и выше!
       //Я победил в гонке!
-      function postGames () {
+      function postGames (score) {
         vkBridge.send("VKWebAppShowWallPostBox", {
-        "message": "Все выше и выше!",
+          "message": "Я набрал " + score + " очков, в игре",
         "attachments": "https://vk.com/app7806038"
       });
       }
